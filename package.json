@@ -16,6 +16,7 @@
   "author": "Majid Ghafoorzade <majidghafoorzade@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.14",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "eslint": "^8.25.0",
@@ -35,8 +36,12 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "@types/express": "^4.17.14",
+    "@prisma/client": "^4.4.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "prisma": "^4.4.0"
+  },
+  "prisma": {
+    "schema": "./src/database/schema.prisma"
   }
 }

@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("APPLICATION_DATABASE_URL")
+}
+
+model User {
+  id             Int            @id @default(autoincrement())
+  username       String         @unique
+  cahnces        Int            @default(0)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  UserActivities UserActivity[]
+
+  @@map("users")
+}
+
+model ActivityType {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  chances      Int
+  UserActivity UserActivity[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@map("activity_types")
+}
+
+model UserActivity {
+  id             Int          @id @default(autoincrement())
+  userId         Int
+  user           User         @relation(fields: [userId], references: [id])
+  activityTypeId Int
+  activityType   ActivityType @relation(fields: [activityTypeId], references: [id])
+  createdAt      DateTime     @default(now())
+
+  @@map("users_activities")
+}
